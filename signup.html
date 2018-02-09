@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Bon App</title>
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+
+    .form-caret {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      margin-left: 2px;
+      vertical-align: middle;
+      color: #c4c4c4;
+      border-top: 10px solid;
+      border-right: 6px solid transparent;
+      border-left: 6px solid transparent;
+    }
+
+    .form-dropdown-show {
+      width: 310px;
+      height: 49px;
+      background-color: #fff;
+      border: 1px solid #eee;
+      border-radius: 30px;
+      text-indent: 15px;
+      text-align: left;
+    }
+
+    .form-dropdown-toggle {
+      background-color: #f0f0f0;
+      width: 62px;
+      height: 49px;
+      border-radius: 30px;
+    }
+
+    .signup-select {
+      display: block;
+      margin: 0 auto;
+      width: 372px;
+      height: 49px;
+    }
+
+    [v-cloak]{
+      display: none;
+    }
+  </style>
+</head>
+<body class="signup-bg">
+<div class="container" id="root" v-cloak>
+  <div class="row">
+
+    <!--signup start-->
+    <div v-show="signup" class="modal-dialog z-index-0" style="display: block;">
+      <div class="modal-content bg-f0f0f0">
+        <div class="modal-header border-2-dedede-b">
+          <h4 class="modal-title c261c00 font24 italic text-center">Sign Up</h4>
+        </div>
+        <div class="modal-body bg-f7f7f7">
+          <p class="italic font18 bold c261c00 text-center">Discover your next favorite restaurant,<br>get
+            deals and recommendations. Free!</p>
+          <i class="cff6c6c italic sminput-error">{{signupFirstname}}</i>
+          <input type="text"
+                 v-model.trim="logindata.firstname"
+                 @keyup="valid(1)"
+                 placeholder="Firstname" class="sminput">
+          <i class="cff6c6c italic sminput-error">{{signupEmail}}</i>
+          <input type="email"
+                 v-model.trim="logindata.email"
+                 @keyup="valid(2)"
+                 placeholder="E-mail" class="sminput">
+          <i class="cff6c6c italic sminput-error">{{signupPassword}}</i>
+          <input type="password"
+                 v-model.trim="logindata.password"
+                 @keyup="valid(3)"
+                 placeholder="Password" class="sminput">
+          <input type="button" value="Sign Up"
+                 @click="signupFn"
+                 class="btn-is block mg-20-auto width-372">
+          <p class="c75888c text-center">
+            By signing up you confirm to accept our <a class="c1e6574" href="javascript:void(0);">Terms of
+            Service</a><br>
+            We'll never share your email, check out our <a class="c1e6574" href="javascript:void(0);">Privacy
+            Policy</a>
+          </p>
+        </div>
+        <div class="modal-footer mg-t-0 border-2-dedede-t">
+          <p class="text-center">
+            Have an account already? <a @click.prevent="signup=!signup" class="font18 c1e6574">Log in!</a>
+          </p>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    <!--signup end-->
+
+    <!--login start-->
+    <div v-show="!signup" class="modal-dialog z-index-0">
+      <div class="modal-content bg-f0f0f0">
+        <div class="modal-header border-2-dedede-b">
+          <h4 class="modal-title c261c00 font24 italic text-center">Log In</h4>
+        </div>
+        <div class="modal-body bg-f7f7f7">
+          <i class="cff6c6c italic sminput-error">{{loginEmail}}</i>
+          <input type="email"
+                 v-model.trim="signupdata.email"
+                 @keyup="valid(4)"
+                 placeholder="E-mail" class="sminput">
+          <i class="cff6c6c italic sminput-error">{{loginPassword}}</i>
+          <input type="password"
+                 v-model.trim="signupdata.password"
+                 @keyup="valid(5)"
+                 placeholder="Password" class="sminput">
+          <input type="button" value="Log In"
+                 @click="login"
+                 class="btn-is block mg-20-auto width-372 mg-t-30">
+        </div>
+        <div class="modal-footer mg-t-0 border-2-dedede-t clearfix">
+          <p class="pull-right mg-all-0" style="line-height: 40px;">
+            Don't have an account? <a @click.prevent="signup=!signup" class="c1e6574" class="font18">Create
+            one!</a>
+          </p>
+        </div>
+
+      </div><!-- /.modal-content -->
+    </div>
+    <!--login end-->
+  </div>
+</div>
+<script src="./js/lib/vue.min.js"></script>
+<script src="./js/lib/vue-resource.js"></script>
+<script src="./js/singup.js"></script>
+</body>
+</html>
